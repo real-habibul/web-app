@@ -17,6 +17,7 @@
                         <th class="py-2 px-4 border-b">Name</th>
                         <th class="py-2 px-4 border-b">Status</th>
                         <th class="py-2 px-4 border-b">Email</th>
+                        <th class="py-2 px-4 border-b">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -26,6 +27,16 @@
                         <td class="py-2 px-4 border-b">{{ user.Username }}</td>
                         <td class="py-2 px-4 border-b">{{ user.Status }}</td>
                         <td class="py-2 px-4 border-b">{{ user.Email }}</td>
+                        <td class="py-2 px-4 border-b">
+                            <button @click="editUser(user.ID)"
+                                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                Edit
+                            </button>
+                            <button @click="deleteUser(user.ID)"
+                                class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                                Delete
+                            </button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -53,7 +64,19 @@ export default {
     },
     methods: {
         addUser() {
-            this.$router.push('/addUsers');
+            this.$router.push('/users/add');
+        },
+        editUser(id) {
+            this.$router.push(`/users/${id}`);
+        },
+        async deleteUser(id) {
+            try {
+                const { default: axios } = await import('axios');
+                await axios.delete(`http://localhost:9001/users/${id}`);
+                this.users = this.users.filter(user => user.ID !== id);
+            } catch (error) {
+                console.error('Error deleting user:', error);
+            }
         }
     }
 }

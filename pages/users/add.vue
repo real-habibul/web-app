@@ -10,8 +10,8 @@
         </div>
         <form @submit.prevent="submitForm" class="mb-4">
             <div class="mb-4">
-                <label for="name" class="block text-gray-700">Name</label>
-                <input v-model="form.name" type="text" id="name" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                <label for="username" class="block text-gray-700">Username</label>
+                <input v-model="form.username" type="text" id="username" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
             </div>
             <div class="mb-4">
                 <label for="email" class="block text-gray-700">Email</label>
@@ -22,12 +22,12 @@
                 <input v-model="form.password" type="password" id="password" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
             </div>
             <div class="mb-4">
-                <label for="first_name" class="block text-gray-700">First Name</label>
-                <input v-model="form.first_name" type="text" id="first_name" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                <label for="firstname" class="block text-gray-700">First Name</label>
+                <input v-model="form.firstname" type="text" id="firstname" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
             </div>
             <div class="mb-4">
-                <label for="last_name" class="block text-gray-700">Last Name</label>
-                <input v-model="form.last_name" type="text" id="last_name" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                <label for="lastname" class="block text-gray-700">Last Name</label>
+                <input v-model="form.lastname" type="text" id="lastname" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
             </div>
             <button type="submit" :disabled="loading" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                 <span v-if="loading">Loading...</span>
@@ -44,10 +44,11 @@ export default {
         return {
             users: [],
             form: {
-                name: '',
+                username: '',
                 email: '',
-                first_name: '',
-                last_name: ''
+                password: '',
+                firstname: '',
+                lastname: ''
             },
             loading: false
         };
